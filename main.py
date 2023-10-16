@@ -8,16 +8,16 @@ if __name__ == '__main__':
     # print_hi('Pyton Kurs')
 
     tablica = [1,23,43543]
-    tab = list()
+    # tab = list()
 
     tablica.append(2)
     tablica.insert(1, 3432)
 
-    print(f'Element {tablica[0] + tablica[1]}, ostatni element list {tablica[-1]}')
+    # print(f'Element {tablica[0] + tablica[1]}, ostatni element list {tablica[-1]}')
 
-    print(tablica)
-    for i in tablica:
-        print(i)
+    # print(tablica)
+    # for i in tablica:
+    #     print(i)
 
     # for i in range(0,10):
     #     print(i)
@@ -45,9 +45,9 @@ if __name__ == '__main__':
     #     potegi.append(element)
     potegi.extend(tablica)
 
-    print(potegi)
-    potegi.append(tablica)
-    print(potegi)
+    # print(potegi)
+    # potegi.append(tablica)
+    # print(potegi)
 
     x = random.randint(1,10)
 
@@ -64,9 +64,58 @@ if __name__ == '__main__':
     print(wynik)
     print(list1)
 
+    list_poteg = [[2,4], [3,8]]
+    print(list_poteg)
     # Korzystajac z petli stworz liste zawierajaca elementy same bedace listami. Kazdy taki
     # element ma zawierac numer potegi oraz wartosc tej potegi dla liczby 2.
+    lista_list = []
+    for i in range(10):
+        lista_list.append([i, 2 ** i])
+    print(lista_list)
 
+    poszukiwani=["Michael Scofield","Lincoln Burrows","TheodoreBagwell","Uczciwy polityk", "Andrzej Klusiewicz"]
+    if("Andrzej Klusiewicz" in poszukiwani):
+        print("pszypau")
+    else:
+        print("nie pszypau")
 
+    # potegi[0] = 321
+    # print(potegi)
 
+    # [2, 4, 8, 16, 32, 64,]
+    # [0, 1, 2, 3, 4, 5,]
+    # print(potegi[2:4])
+    # print(potegi[:4])
+    # print(potegi[4:])
+    # print(potegi[1:-1])
 
+    # napis = "napis"
+    # print(napis[1:-1:2])
+    # print(napis[::-1])
+
+    # napis = "napis-123-deprtament"
+    # podzielone = napis.split("-")
+    # print(podzielone)
+    # numer = int(podzielone[1])
+    # print(numer)
+    #
+    # litery = list(napis)
+    # print(litery)
+    # lokalizacje = litery.index('-')
+    # print(lokalizacje)
+
+    potegi.sort()
+    potegi.reverse()
+    print(potegi)
+
+    # list3 = []
+    # for i in range(10):
+    #     list3.append(random.randint(0, 10))
+
+    list3 = [random.randint(0,10) for i in range(10)]
+    print(list3)
+
+    przefiltrowana = [element for element in list3 if element > 5]
+    print(przefiltrowana)
+
+    # Korzystając z list składanych wygeneruj listę zawierajaca 10 kolejnych poteg 2
