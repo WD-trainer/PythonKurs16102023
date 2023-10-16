@@ -1,5 +1,8 @@
+import operator
 import random
 import os
+import re
+from collections import defaultdict
 
 def print_hi(name):
     print(f'Hi, {name}')
@@ -246,3 +249,69 @@ if __name__ == '__main__':
 
 
     # c) Przepakuj dane ze słownika do listy i posortuj.
+
+    nazwa_pliku = "text.txt"
+
+    wystapienia = {}
+    # Defining the dict
+    wystapienia2 = defaultdict(int)  #    from collections import defaultdict
+
+    with open(nazwa_pliku, "r", encoding='utf-8') as plik:
+        # while True:
+        #     linia = plik.readline()
+        #     if not linia:
+        #         break
+        for linia in plik:
+            linia_wyczyszczona = re.sub(r'\W+', ' ', linia)   # https://www.w3schools.com/python/python_regex.asp
+            slowa = linia_wyczyszczona.lower().split()
+            for slowo in slowa:
+                if slowo in wystapienia:            # https://www.geeksforgeeks.org/defaultdict-in-python/
+                    wystapienia[slowo] += 1
+                else:
+                    wystapienia[slowo] = 1
+
+                wystapienia2[slowo] += 1
+
+    print(wystapienia)
+
+    posortowane_wystapienia = sorted(wystapienia.items(), key=lambda x: x[1], reverse=True)
+    posortowane_wystapienia2 = sorted(wystapienia.items(), key=operator.itemgetter(1), reverse=True)
+    print(posortowane_wystapienia)
+
+
+    def razy2(a:int) -> int:  # funkcja która będzie użyta jako argument
+        return a * 2
+
+    def funkcja_jako_argument(f, x):
+        print(f(x))
+
+
+    funkcja_jako_argument(razy2, 33)
+    funkcja_jako_argument(lambda x: x+1, 1)
+
+
+    def powieksz(x:str):
+        return x.upper()
+
+    def tytul(napis:str) -> str:
+        return napis.title()
+
+    def zastosuj_dla_wszystkich(fun, *args):
+        for a in args:
+            print(fun(a))
+
+    zastosuj_dla_wszystkich(powieksz, 'siała', 'baba', 'mak')
+    zastosuj_dla_wszystkich(tytul, 'siała', 'baba', 'mak',)
+
+
+
+    #     • Stwórz funkcję która wydrukuje na konsoli sumę wartości przekazanych do niej jako *args
+
+
+
+
+
+    #     • (rozne typy argumentow)Stwórz funkcję która przyjmie nieokreśloną liczbę elementów przez argument,
+    #     a następnie wypisze na konsoli ilość otrzymanych elementów. Poniżej informacji o ilości
+    #     otrzymanych elementów wyświetl w osobnych liniach każdy argument oraz jego typ.
+    
