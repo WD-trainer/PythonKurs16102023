@@ -1,13 +1,24 @@
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print(f'Hi, {name}')
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('Pyton Kurs')
+    # print_hi('Pyton Kurs')
 
+    tablica = [1,23,43543]
+    tab = list()
 
+    tablica.append(2)
+    tablica.insert(1, 3432)
+
+    print(f'Element {tablica[0] + tablica[1]}, ostatni element list {tablica[-1]}')
+
+    print(tablica)
+    for i in tablica:
+        print(i)
+
+    # for i in range(0,10):
+    #     print(i)
+
+    # Napisz kod który umieści w liście 10 kolejnych potęg liczby 2.
