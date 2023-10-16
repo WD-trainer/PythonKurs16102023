@@ -40,10 +40,10 @@ jakoś pomóc. Ewentualna pomoc
 ### Dane do hostów:
 
 1.	Sebastian	20.224.48.130
-2.	Agnieszka	20.224.48.247
+2.	Agnieszka ł.	20.224.48.247
 3.	Piotr	20.224.49.113
 4.	Adam	20.224.49.219
 5.	Adrian	20.224.50.30
 6.	Kajetan	20.224.50.170
-7.	Agnieszka	20.224.51.213
+7.	Agnieszka G.	20.224.51.213
 8.	Krzysztof	20.224.52.84
