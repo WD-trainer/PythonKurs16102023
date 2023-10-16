@@ -307,11 +307,146 @@ if __name__ == '__main__':
 
     #     • Stwórz funkcję która wydrukuje na konsoli sumę wartości przekazanych do niej jako *args
 
+    def moja_suma(*argumenty):
+        suma = 0
+        for i in argumenty:
+            suma += i
+        return suma
 
-
+    print(moja_suma(1,2,3,4,5,6,7,8,9,10))
 
 
     #     • (rozne typy argumentow)Stwórz funkcję która przyjmie nieokreśloną liczbę elementów przez argument,
     #     a następnie wypisze na konsoli ilość otrzymanych elementów. Poniżej informacji o ilości
     #     otrzymanych elementów wyświetl w osobnych liniach każdy argument oraz jego typ.
-    
+
+    def wiele_argumentów(*args):
+        ile_ich = len(args)
+        print(ile_ich)
+        for element in args:
+            print(element, type(element))
+
+
+    wiele_argumentów([1], "abc", 1.0, 123, "Moj super kurs pythona")
+
+
+    def my_sum(a, b, c):
+        print(a + b + c)
+
+    my_list = [1, 2, 3]
+    my_sum(*my_list)
+
+
+    def my_sum(*args):
+        result = 0
+        for x in args:
+            result += x
+        return result
+
+
+    list1 = [1, 2, 3]
+    list2 = [4, 5]
+    list3 = [6, 7, 8, 9]
+
+    print(my_sum(*list1, *list2, *list3))
+
+
+    def pomnoz_razy_dwa(x):
+        return x * 2
+    def podziel_przez_trzy(x):
+        return x / 3
+    def dodaj_piec(x):
+        return x + 5
+
+    funkcje = [pomnoz_razy_dwa, podziel_przez_trzy, dodaj_piec]
+    def obrob(wartosc, *funkcs):
+        for f in funkcs:
+            wartosc = f(wartosc)
+        return wartosc
+
+    print(obrob(1, pomnoz_razy_dwa, podziel_przez_trzy, dodaj_piec))
+
+
+    def zewnetrzna(x):
+        def wewnetrzna(x):
+            return x * 2
+        print(wewnetrzna(x))
+        return 1
+
+    zewnetrzna(25)
+
+    def czytaj_pdf(plik):
+        print("czytam pdf")
+
+    def czytaj_xml(plik):
+        print("czytam xml")
+
+    dekodawnie_plikow = {
+        ".pdf" : czytaj_pdf,
+        ".xml" : czytaj_xml
+    }
+    wspierane = list(dekodawnie_plikow.keys())
+
+    for plik in os.listdir("."):
+        rozszerzenie = os.path.splitext(plik)[1]
+        if rozszerzenie in wspierane:
+            dekodawnie_plikow[rozszerzenie](plik)
+
+    pomnoz_razy_dwa(x=2)
+
+
+
+    def parametr_kwargs(**kwargs):
+        for k in kwargs:
+            print(k, kwargs[k])
+
+    parametr_kwargs(dodatkowy=48, nastepny=111)
+
+
+
+    def zapisz_parametry_do_pliku(nazwa_pliku, **parametry):
+        plik = open(nazwa_pliku, mode='w', encoding='utf-8')
+        for p in parametry:
+            plik.write(f'{p};{parametry[p]}\n')
+        plik.close()
+
+    zapisz_parametry_do_pliku('mojplik.csv', parametr1='wartość 1', parametr2=2, moj_argument="Jestesmy zmeczeni bardzo")
+
+    from datetime import datetime
+    import time
+
+    def czekacz():
+        time.sleep(1)
+        return 1
+
+    poczatek = datetime.now()
+    for x in range(10):
+        czekacz()
+    koniec = datetime.now()
+    print(koniec - poczatek)
+
+
+    import functools
+
+
+    @functools.lru_cache(maxsize=None)
+    def czekacz():
+        time.sleep(1)
+        return 1
+
+    poczatek = datetime.now()
+    for x in range(10):
+        czekacz()
+    koniec = datetime.now()
+    print(koniec - poczatek)
+
+
+    # Stworz funkcje "config" ktora bedzie otrzymywala argumenty kwargs bedace ustawieniami.
+    # Funkcja ta ma zapisac podane argumenty do pliku config.csv w 2 kolumnach z czego pierwsza jest nazwa
+    # argumentu a druga jego wartoscia. Jesli dane argument juz istnieje w pliku to trzeba bedzie tylko zaktualizowac
+    # jego wartosc, jesli jeszcze go nie ma to trzeba go bedzie dodac do pliku.
+    def config(nazwa_pliku, **parametry):
+        plik = open(nazwa_pliku, mode='w', encoding='utf-8')
+        for p in parametry:
+            plik.write(f'{p};{parametry[p]}\n')
+        plik.close()
