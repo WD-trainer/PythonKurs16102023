@@ -230,14 +230,12 @@ if __name__ == '__main__':
         print(f'Klucz: {k}, wartosc: {v}')
 
 
-    # Napisz system który zwróci nam ilość wystąpień każdego ze słow w pliku w postaci listy krotek.
-    # [ (slowo,ilosc_wystapien),(slowo,ilosc_wystapien) ]. Nazwa pliku ma zostać przekazana przez  zmienną.
+    # Napisz system który zwróci nam ilość wystąpień każdego ze słow w pliku
+    # Nazwa pliku ma zostać przekazana przez  zmienną.
     # Wynik powinien byc posortowany malejąco wg ilosci wystapien
-    # a) odczytaj wszystkie linie z pliku i rozbij na słowa. Każde ze słów dodaj do osobnej listy.
+    # a) odczytaj wszystkie linie z pliku i rozbij na słowa. Każde ze słów dodaj jako elemnt listy.
     # Zadbaj o usunięcie po drodze znaków specjalnych czyli kropek, przecinków, wykrzykników
     # etc.
-
-
 
     # b) stwórz słownik i dla każdego słowa w liście sprawdz czy istnieje juz wpis dotyczący tego
     # słowa
