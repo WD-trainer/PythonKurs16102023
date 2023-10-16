@@ -1,4 +1,5 @@
 import random
+import os
 
 def print_hi(name):
     print(f'Hi, {name}')
@@ -119,3 +120,24 @@ if __name__ == '__main__':
     print(przefiltrowana)
 
     # Korzystając z list składanych wygeneruj listę zawierajaca 10 kolejnych poteg 2
+    lista_poteg_2 = [2 ** i for i in range(10)]
+    print(lista_poteg_2)
+
+    wynik = os.walk(".")
+    print(wynik)
+
+    for root, dirs, files in os.walk("."):
+        for name in files:
+            print(os.path.join(root, name))
+        for name in dirs:
+            print(os.path.join(root, name))
+
+    # Napisz wyszukiwarkę plików która
+    # przyjmie od użytkownika szukaną frazę i katalog startowy. Wyszukiwarka ma wyswietlić
+    # wszystkie pliki i katalogi zawierajace w nazwie szukaną frazę - wraz ze ścieżkami.
+    # Wyszukiwarka ma być nieczuła na wielkość liter
+
+    folder_startowy = ""
+    szukna_fraze = ".py"
+
+    for root, dirs, files in os.walk(".", topdown=False):
