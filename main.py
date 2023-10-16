@@ -123,21 +123,94 @@ if __name__ == '__main__':
     lista_poteg_2 = [2 ** i for i in range(10)]
     print(lista_poteg_2)
 
-    wynik = os.walk(".")
-    print(wynik)
+    # wynik = os.walk(".")
+    # print(wynik)
 
-    for root, dirs, files in os.walk("."):
-        for name in files:
-            print(os.path.join(root, name))
-        for name in dirs:
-            print(os.path.join(root, name))
+    # for root, dirs, files in os.walk("."):
+    #     for name in files:
+    #         print(os.path.join(root, name))
+    #     for name in dirs:
+    #         print(os.path.join(root, name))
 
     # Napisz wyszukiwarkę plików która
     # przyjmie od użytkownika szukaną frazę i katalog startowy. Wyszukiwarka ma wyswietlić
     # wszystkie pliki i katalogi zawierajace w nazwie szukaną frazę - wraz ze ścieżkami.
     # Wyszukiwarka ma być nieczuła na wielkość liter
 
-    folder_startowy = ""
-    szukna_fraze = ".py"
+    folder_startowy = "."
+    szukna_fraze = ".txt"
 
-    for root, dirs, files in os.walk(".", topdown=False):
+    # folder_startowy = input("Podaj folder startowy ")
+    # szukna_fraze = input("Podaj szukna_fraze ")
+
+    def znajdz_pliki_i_katalogi(katalog_startowy, fraza):
+        znalezione_elementy = []
+
+        fraza = fraza.lower()
+
+        for root, dirs, files in os.walk(katalog_startowy):
+            for element in dirs + files:
+                if fraza in element.lower():
+                    znalezione_elementy.append(os.path.join(root, element))
+
+        print(znalezione_elementy)
+
+    # znajdz_pliki_i_katalogi(folder_startowy, szukna_fraze)
+
+
+    ############################### Krotki - tuple
+    krotka = ("Imie", 23, 2.3)
+    print(krotka)
+    print(krotka[0])
+
+    dni_tygodnia = ("poniedziałek", "wtorek")
+
+    def funkcja():
+        return ("wynik", 321, "sciekza")
+
+    w = funkcja()
+    napis, liczba, sciezka = funkcja()
+    liczba += 1
+    # w[1] += 1   # error
+    print("")
+
+    krotka = tuple(random.randint(0,10) for i in range(10))
+    print(krotka)
+    lista_z_krotki = list(krotka)
+    print(lista_z_krotki)
+    krotka_z_listy = tuple(lista_z_krotki)
+    print(krotka_z_listy)
+
+    # https://www.geeksforgeeks.org/namedtuple-in-python/
+
+    slownik = {}
+    slownik2 = dict()
+
+    info = {
+        "LG123" : "Telewizor 60' z HD Ready, wejściem na internety ifiltrem reklam",
+        "SONY666" : "Piekielnie dobry telewizor",
+        "SZAJSUNG999" : "Telewizor świetnie nadający się do zakrycia dziury w ścianie(i niczego więcej)"
+    }
+
+    print(info)
+    print(info["LG123"])
+    print(info.keys())
+    print(info.values())
+
+    for i in info:
+        print(info[i])
+
+    for k in info.keys():
+        print(info[k])
+
+    if "LG123" in info:
+        print("Mamy taki produkt")
+    else:
+        print("niet :(")
+
+    info["KLUCZ"] = "WARTOŚĆ"
+
+    # wczytaj dane do słownika w ten sposób by pierwsza kolumna stanowila klucze a
+    # druga przypisane do nich wartości. Przeiteruj po słowniku i wypisz klucze oraz przypisane do nich wartości
+
+    
