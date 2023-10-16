@@ -238,6 +238,7 @@ if __name__ == '__main__':
     # etc.
 
 
+
     # b) stwórz słownik i dla każdego słowa w liście sprawdz czy istnieje juz wpis dotyczący tego
     # słowa
     # w słowniku. Jeśli nie ma to dodaj do słownika wpis o kluczu takim jak sprawdzane słowo i
