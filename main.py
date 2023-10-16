@@ -53,6 +53,19 @@ if __name__ == '__main__':
 
     # Stwórz dwie listy. Każda z list ma zawierać 10 liczb losowych z zakresu 1-10. Połącz te dwie
     # listy do jednej i wyswietl na konsoli (extend albo *lista)
+    list1 = []
+    list2 = [] # list()
+    for i in range(10):
+        list1.append(random.randint(0, 10))
+        list2.append(random.randint(0, 10))
+
+    wynik = list1 + list2
+    list1.extend(list2)
+    print(wynik)
+    print(list1)
+
+    # Korzystajac z petli stworz liste zawierajaca elementy same bedace listami. Kazdy taki
+    # element ma zawierac numer potegi oraz wartosc tej potegi dla liczby 2.
 
 
 
