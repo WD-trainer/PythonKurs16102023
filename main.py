@@ -1,3 +1,4 @@
+import random
 
 def print_hi(name):
     print(f'Hi, {name}')
@@ -22,3 +23,37 @@ if __name__ == '__main__':
     #     print(i)
 
     # Napisz kod który umieści w liście 10 kolejnych potęg liczby 2.
+    dwa_do_drugiej = 2 ** 2
+
+    potegi = []
+    for i in range(1,11):
+        x = 2 ** i
+        potegi.append(x)
+        # potegi.insert(i, 2 ** i)
+
+    # print(potegi)
+
+    poloczone_list = potegi + tablica
+    # alternatywa
+    potegi += tablica   # poloczone_list = poloczone_list + tablica
+
+    print(poloczone_list)
+    print(potegi)
+    print(tablica)
+
+    # for element in tablica:
+    #     potegi.append(element)
+    potegi.extend(tablica)
+
+    print(potegi)
+    potegi.append(tablica)
+    print(potegi)
+
+    x = random.randint(1,10)
+
+    # Stwórz dwie listy. Każda z list ma zawierać 10 liczb losowych z zakresu 1-10. Połącz te dwie
+    # listy do jednej i wyswietl na konsoli (extend albo *lista)
+
+
+
+
