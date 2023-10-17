@@ -227,6 +227,7 @@ for osoba in lista_osob:
 #     Klasa ta powinna zawierać też metodę "wyswietl" wypisującą dane z obiektu na konsoli
 #     Stwórz dwa obiekty tej klasy i korzystajac  z metody "wyświetl" wyswietl na konsoli ich zawartość.
 class Samochod:
+    # marka = None
     # marka = "Renault"
     # model = "Clio"
     # rejestracja = "WE 9001A"
@@ -245,8 +246,6 @@ class Samochod:
 s1 = Samochod("Opel", "Vectra", "SJZ 11111")
 s2 = Samochod("Opel", "Astra")
 
-odczytane_z_plik = '1'
-liczba = int(odczytane_z_plik)
 
 print(s1)
 
@@ -256,3 +255,95 @@ print(s1)
 # Powołaj do życia obiekt tej klasy i wyświetl na konsoli obliczone BMI.
 # __str__ - ma wypisac imie, bmi
 # wzor na bmi = masa / (wzrost ** 2)   wzrost podany w metrach 1.84
+class Zawodnik:
+
+    def __init__(self, wzrost:float, masa:float, imie:str, auto = Samochod("Opel", "Vectra", "SJZ 11111")):
+        self._wzrost = wzrost
+        self._masa = masa
+        self._imie = imie
+        self.auto = auto
+
+    def get_bmi(self):
+        return self._masa / (self._wzrost ** 2)
+
+
+    @classmethod
+    def from_list(cls, list_zawodnikow):
+        lista = []
+        for i in range(0, len(list_zawodnikow), 3):
+            z = Zawodnik(list_zawodnikow[i], list_zawodnikow[i+1], list_zawodnikow[i+2])
+            lista.append(z)
+        return lista
+
+    def __str__(self):
+        return f'IMIE: {self._imie} BMI: {self.get_bmi():.2f}, jezdzi {self.auto}'   #http://cissandbox.bentley.edu/sandbox/wp-content/uploads/2022-02-10-Documentation-on-f-strings-Updated.pdf
+
+    def __repr__(self):
+        return self.__str__()
+
+
+z1 = Zawodnik(1.80, 75, "Adam", Samochod("Opel", "Astra", "SJZ 22222"))
+print(z1)
+z2 = Zawodnik(1.85, 80, "Adam")
+print(z2)
+
+# slownik = { "Adam" : z1 }
+# slownik["Adam"]
+
+# Przeladowanie operatorow https://www.geeksforgeeks.org/operator-overloading-in-python/
+
+dane = [1.8, 70, "Krzysztof", 1.9, 80, "Jerzy"]
+lista_z = Zawodnik.from_list(dane)
+print(lista_z)
+
+
+
+# odczytali dane z pliku dane.txt
+# zbudowali sobie liste zawodnikow (jako obietky klasy)
+# print tej list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# https://realpython.com/python-property/
+class Circle:
+
+    def __init__(self, radius):
+        self._radius = radius
+
+    def _get_radius(self):
+        print("Get radius")
+        return self._radius
+
+    def _set_radius(self, value):
+        print("Set radius")
+        self._radius = value
+
+    def _del_radius(self):
+        print("Delete radius")
+        del self._radius
+
+    radius = property(
+        fget=_get_radius,
+        fset=_set_radius,
+        fdel=_del_radius,
+        doc="The radius property."
+    )
+
