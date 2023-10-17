@@ -263,9 +263,16 @@ class Zawodnik:
         self._imie = imie
         self.auto = auto
 
+
     def get_bmi(self):
         return self._masa / (self._wzrost ** 2)
 
+
+    # @classmethod
+    # def from_str(cls, linia:str):
+    #     dane = linia.strip().split(";")
+    #     if len(dane) == 3:
+    #         imie, masa, wzrost = dane
 
     @classmethod
     def from_list(cls, list_zawodnikow):
@@ -302,23 +309,17 @@ print(lista_z)
 # zbudowali sobie liste zawodnikow (jako obietky klasy)
 # print tej list
 
+zawodnicy = []
+with open("dane.txt", "r") as plik:
+    for linia in plik:
+        dane = linia.strip().split(";")
+        if len(dane) == 3:
+            imie, masa, wzrost = dane
+            zawodnik = Zawodnik(imie=imie, masa=float(masa), wzrost=float(wzrost))
+            zawodnicy.append(zawodnik)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for z in zawodnicy:
+    print(z)
 
 
 
@@ -346,4 +347,90 @@ class Circle:
         fdel=_del_radius,
         doc="The radius property."
     )
+
+
+
+class Witacz:
+    def powitaj(self,kogo):
+        print("No siemka {}!".format(kogo))
+    def powitaj(self):
+        print("No siemka!")
+
+
+# w=Witacz()
+# w.powitaj()
+# w.powitaj("mnie") Tu bedzie bład
+
+
+
+from abc import ABC, abstractmethod
+
+class Pisacz:
+
+    def ladnie_pisze(self):
+        print("Sobie pisze")
+
+
+
+class Rysuje(ABC):
+
+    @abstractmethod
+    def narysuje_mnie(self):
+        pass
+
+class Figura(ABC):
+    def __init__(self, nazwa):
+        self.nazwa = nazwa
+    def pokaz_nazwe(self):
+        print(self.nazwa)
+
+    @abstractmethod
+    def oblicz_pole(self):
+        pass
+
+# f=Figura()
+
+
+class Kwadrat(Figura, Rysuje):
+    def __init__(self,dlugosc_boku):
+        super().__init__('Kwadrat')
+        self.dlugosc_boku=dlugosc_boku
+
+    def oblicz_pole(self):
+        return pow(self.dlugosc_boku,2)
+
+    def narysuje_mnie(self):
+        print("**")
+        print("**")
+
+
+
+class Prostokat(Figura):
+    def __init__(self,bok_a,bok_b):
+        super().__init__('Prostokąt')
+        self.bok_a=bok_a
+        self.bok_b=bok_b
+    def oblicz_pole(self):
+        return self.bok_a*self.bok_b
+
+
+kw=Kwadrat(5)
+print(kw.nazwa)
+print(kw.oblicz_pole())
+
+p = Prostokat(6,8)
+p.ladnie_pisze()
+
+figury =  [Prostokat(2,3), kw, Kwadrat(50), Prostokat(6,8)]
+
+for f in figury:
+    f.pokaz_nazwe()
+    print(f.oblicz_pole())
+
+
+# Stwórz klasę abstrakcyjną Restauracja która będzie posiadała abstrakcyjną metodę "serwuj_danie".
+# Stwórz klasy "RestauracjaChinska", "RestauracjaWloska" i "RestaruracjaPolska".
+# Wymuś posiadanie implementacji metody abstrakcyjnej "serwuj_danie" we wszystkich
+# tych klasach ale o różnej implementacji. Powołaj do życia obiekty tych klas,
+# a następnie na rzecz każdego z tych obiektów wywołaj funkcję serwuj_danie.
 
