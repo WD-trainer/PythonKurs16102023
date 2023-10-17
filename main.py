@@ -526,8 +526,27 @@ if __name__ == '__main__':
     print(dz.__next__())
     print(dz.__next__())
 
-    for i in dziesieci():
+    potegi22 = [2 ** i for i in range(100)]
+    generator_potegi = (2 ** i for i in range(100000))
+    print(generator_potegi)
+    next(generator_potegi)
+    generator_potegi.__next__()
+
+    # print(generator_potegi[5])
+
+    for i in generator_potegi:
         print(i)
+        if i > 2048:
+            break
+
+    # for i in dziesieci():
+    #     print(i)
+
+    #  Stworz generator ktory bedzie przyjmowal przez parametr ilosc elementow a nastepnie zwracal elementy o tresci
+    #  'element o indeksie x'( gdzie x bedzie numerem podawanego elementu) czekajac 1 sekunde przed zwrotem kazdego elementu.
 
 
-    
+    #     Stwórz generator który będzie podawał nieskończenie wiele liczb parzystych.
+    #     Przetestuj go pobierając z niego kolejne wartości i wyświetlając je na konsoli.
+
+
