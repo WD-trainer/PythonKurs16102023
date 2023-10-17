@@ -544,9 +544,30 @@ if __name__ == '__main__':
 
     #  Stworz generator ktory bedzie przyjmowal przez parametr ilosc elementow a nastepnie zwracal elementy o tresci
     #  'element o indeksie x'( gdzie x bedzie numerem podawanego elementu) czekajac 1 sekunde przed zwrotem kazdego elementu.
+    def generator_elementów(ilosc:int):
+        for i in range(ilosc):
+            # time.sleep(1)
+            yield f'element o indeksie {i}'
+            # yield print(f'element o indeksie {i}')
+
+    genrator = generator_elementów(3)
+    print(next(genrator))
+    next(genrator)
+    print(next(genrator))
+
 
 
     #     Stwórz generator który będzie podawał nieskończenie wiele liczb parzystych.
     #     Przetestuj go pobierając z niego kolejne wartości i wyświetlając je na konsoli.
+    def  generator_parzysty():
+        i = 0
+        while True:
+            yield i
+            i += 2
+
+    for i in generator_parzysty():
+        print(i)
+        if i > 20:
+            break
 
 

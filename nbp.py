@@ -2,11 +2,10 @@ import requests
 import json
 from requests.exceptions import HTTPError
 
-def get_rates_of_currency(currency):
+def get_rates_of_currency(currency, rates_number):
     try:
         # Skorzystamy z NBP API
         table = "A"
-        rates_number = 12
         url = f"http://api.nbp.pl/api/exchangerates/rates/{table}/{currency}/last/{rates_number}/"
         response = requests.get(url)
     except HTTPError as http_error:
@@ -23,7 +22,7 @@ def get_rates_of_currency(currency):
 
 if __name__ == '__main__':
     # JSON jako string oraz JSON
-    json_caly, GBP = get_rates_of_currency("GBP")
+    json_caly, GBP = get_rates_of_currency("GBP", 12)
     print(json_caly)
     # Kursy GBP z <rates_number> dni.
     for i in range(len(GBP["rates"])):
