@@ -419,26 +419,26 @@ if __name__ == '__main__':
         time.sleep(1)
         return 1
 
-    poczatek = datetime.now()
-    for x in range(10):
-        czekacz()
-    koniec = datetime.now()
-    print(koniec - poczatek)
+    # poczatek = datetime.now()
+    # for x in range(10):
+    #     czekacz()
+    # koniec = datetime.now()
+    # print(koniec - poczatek)
 
 
     import functools
 
 
-    @functools.lru_cache(maxsize=None)
-    def czekacz():
-        time.sleep(1)
-        return 1
-
-    poczatek = datetime.now()
-    for x in range(10):
-        czekacz()
-    koniec = datetime.now()
-    print(koniec - poczatek)
+    # @functools.lru_cache(maxsize=None)
+    # def czekacz():
+    #     time.sleep(1)
+    #     return 1
+    #
+    # poczatek = datetime.now()
+    # for x in range(10):
+    #     czekacz()
+    # koniec = datetime.now()
+    # print(koniec - poczatek)
 
 
     # Stworz funkcje "config" ktora bedzie otrzymywala argumenty kwargs bedace ustawieniami.
@@ -446,7 +446,88 @@ if __name__ == '__main__':
     # argumentu a druga jego wartoscia. Jesli dane argument juz istnieje w pliku to trzeba bedzie tylko zaktualizowac
     # jego wartosc, jesli jeszcze go nie ma to trzeba go bedzie dodac do pliku.
     def config(nazwa_pliku, **parametry):
-        plik = open(nazwa_pliku, mode='w', encoding='utf-8')
+        wczytany_config = {}
+        with open(nazwa_pliku, mode='r', encoding='utf-8') as plik:
+            for linia in plik:
+                klucz, wartosc = linia.split(';')
+                wczytany_config[klucz] = wartosc
+
         for p in parametry:
-            plik.write(f'{p};{parametry[p]}\n')
+            wczytany_config[p] = parametry[p]
+
+        plik = open(nazwa_pliku, mode='w', encoding='utf-8')
+        for p in wczytany_config:
+            plik.write(f'{p};{wczytany_config[p]}\n')
         plik.close()
+
+    # config("plik.csv", wersja=1, arg=2, argument321 = 3)
+    # config("plik.csv", arg_inny=2, argument321=3, wersja=2.0)
+
+    #funckja w funkcji
+    # Napisz funkcje która będzie tworzyła listę liczb parzystych lub nieparzystych w danym zakresie
+    # funkcje do sprawdzenia parzystosci napisz jako funckje wewnętrzne i w zależności
+    # od przekazanego parametru wywołuj odpowiednią
+    def generuj_liczby(start:int, koniec:int, parzyste:bool = True):
+
+        def parzysta(x:int) -> bool:
+            return x % 2 == 0
+
+        def nieparzysta(x:int) -> bool:
+            return x % 2 == 1
+
+        list_liczba = []
+        for i in range(start,koniec):
+            if parzyste and parzysta(i):
+                list_liczba.append(i)
+            elif not parzyste and nieparzysta(i):
+                list_liczba.append(i)
+
+        return list_liczba
+
+    print(generuj_liczby(0,20,parzyste=False))
+
+    print(generuj_liczby(parzyste=True, koniec=100, start=10))
+
+    print(generuj_liczby(10, parzyste=True, koniec=100))
+    print(generuj_liczby(10, 100, True))
+
+    print(range(10000000000000))
+
+
+    def elementy():
+        yield 'element numer 1'
+        yield 'element numer 2'
+        yield 'element numer 3'
+        yield 'element numer 4'
+
+    gen = elementy()
+
+
+    for e in elementy():
+        print(e)
+
+    def potegi2(n):
+        for x in range(1, n + 1):
+            yield pow(2, x)
+
+    for p in potegi2(50):
+        print(p)
+
+
+    def dziesieci():
+        i = 1
+        while True:
+            yield i * 10
+            i += 1
+
+
+    dz = dziesieci()
+    print(dz.__next__())
+    print(dz.__next__())
+    print(dz.__next__())
+
+    for i in dziesieci():
+        print(i)
+
+
+    
