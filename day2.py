@@ -419,7 +419,7 @@ print(kw.nazwa)
 print(kw.oblicz_pole())
 
 p = Prostokat(6,8)
-p.ladnie_pisze()
+# p.ladnie_pisze()
 
 figury =  [Prostokat(2,3), kw, Kwadrat(50), Prostokat(6,8)]
 
@@ -433,4 +433,128 @@ for f in figury:
 # Wymuś posiadanie implementacji metody abstrakcyjnej "serwuj_danie" we wszystkich
 # tych klasach ale o różnej implementacji. Powołaj do życia obiekty tych klas,
 # a następnie na rzecz każdego z tych obiektów wywołaj funkcję serwuj_danie.
+
+# from abc import ABC, abstractmethod
+class Restauracja(ABC):
+    @abstractmethod
+    def serwuj_danie(self):
+        pass
+
+class RestauracjaChinska(Restauracja):
+    def serwuj_danie(self):
+        print("Restauracja chińska serwuje danie: Kaczka po pekińsku")
+
+class RestauracjaWloska(Restauracja):
+    def serwuj_danie(self):
+        print("Restauracja włoska serwuje danie: Spaghetti Bolognese")
+
+class RestauracjaPolska(Restauracja):
+    def serwuj_danie(self):
+        print("Restauracja polska serwuje danie: Bigos")
+
+
+lista_restauracji = [RestauracjaChinska(), RestauracjaWloska(), RestauracjaPolska()]
+
+for rest in lista_restauracji:
+    rest.serwuj_danie()
+
+
+
+
+# Jak zająć programistę?
+# - Przeczytaj zdanie poniżej.
+# - Przeczytaj zdanie powyżej.
+
+
+
+
+
+
+
+# https://realpython.com/python-with-statement/
+from timeit import default_timer as timer
+class Timer(object):
+    def __init__(self, verbose=False):
+        self.verbose = verbose
+        self.timer = timer
+
+    def __enter__(self):
+        self.start = self.timer()
+        return self
+
+    def __exit__(self, *args):
+        end = self.timer()
+        self.elapsed_secs = end - self.start
+        self.elapsed = self.elapsed_secs * 1000  # milliseconds
+        if self.verbose:
+            print('elapsed time: %f ms' % self.elapsed)
+
+
+#tu bylo troche kodu na start
+# with Timer() as t:
+#     time.sleep(3)
+#     print("Moja bardzo długa funkcja")
+#
+#
+# print(f'Ta funkcja trwała {t.elapsed}')
+
+
+
+# https://realpython.com/python-iterators-iterables/
+
+
+class IncrementIterator:
+    def __init__(self, n):
+        self.n = n
+        self.i = 0
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.n == self.i:
+            raise StopIteration
+        self.i += 1
+        return self.i
+
+
+for e in IncrementIterator(10):
+    print(e)
+
+class ListaZawodnikow:
+    def __init__(self, plik:str):
+        self.zawodnicy = []
+        self.index = 0
+        with open(plik, "r") as plik:
+            for linia in plik:
+                dane = linia.strip().split(";")
+                if len(dane) == 3:
+                    imie, masa, wzrost = dane
+                    zawodnik = Zawodnik(imie=imie, masa=float(masa), wzrost=float(wzrost))
+                    self.zawodnicy.append(zawodnik)
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        if self.index == len(self.zawodnicy):
+            raise StopIteration
+        self.index += 1
+        # return self.zawodnicy[self.index - 1]
+        return f'Zawodnik numer {self.index}, ma BMI {self.zawodnicy[self.index-1].get_bmi()}'
+
+
+nasza_list = ListaZawodnikow("dane.txt")
+
+zawodnik = next(nasza_list)
+
+for z in nasza_list:
+    print(z)
+
+for z in nasza_list:
+    print(z)
+
+
+# Stwórz iterator który będzie zwracał nazwy kolejnych miesięcy. Iterator powinien też posiadać funkcję "restart"
+# która spowoduje rozpoczęcie podawania miesięcy od początku.
+
 
