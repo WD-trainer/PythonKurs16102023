@@ -226,3 +226,33 @@ for osoba in lista_osob:
 #     Stwórz klasę "Samochod" posiadającą pola "marka", "model", "rejestracja".
 #     Klasa ta powinna zawierać też metodę "wyswietl" wypisującą dane z obiektu na konsoli
 #     Stwórz dwa obiekty tej klasy i korzystajac  z metody "wyświetl" wyswietl na konsoli ich zawartość.
+class Samochod:
+    # marka = "Renault"
+    # model = "Clio"
+    # rejestracja = "WE 9001A"
+
+    def __init__(self, marka, model, rejstracja = "DOMYSLNA WARTOSC"):
+        self.marka = marka
+        self.model = model
+        self.rejestracja = rejstracja
+
+    def __str__(self):
+        return f'Moj piekny samochodzik: {self.marka}, {self.model}, {self.rejestracja}'
+    def wyswietl(self):
+        print(f'{self.marka}, {self.model}, {self.rejestracja}')
+
+
+s1 = Samochod("Opel", "Vectra", "SJZ 11111")
+s2 = Samochod("Opel", "Astra")
+
+odczytane_z_plik = '1'
+liczba = int(odczytane_z_plik)
+
+print(s1)
+
+
+# Stwórz klasę Zawodnik posiadającą pola wzrost i masa, imie. Pola te mają być uzupełniane przy tworzeniu obiektu.
+# Dodaj do klasy metodę get_bmi która zwróci obliczone na podstawie pól BMI.
+# Powołaj do życia obiekt tej klasy i wyświetl na konsoli obliczone BMI.
+# __str__ - ma wypisac imie, bmi
+# wzor na bmi = masa / (wzrost ** 2)   wzrost podany w metrach 1.84
