@@ -43,7 +43,7 @@ def dekoruj_cos(fun):
 
 @dekoruj_cos
 def opakuj_mnie():
-    time.sleep(3)
+    # time.sleep(3)
     print("Robie ciekawe rzeczy w Pythonie")
 
 @dekoruj_cos
@@ -54,8 +54,8 @@ def trzecia_f():
     print("ja tez cos wypisuje")
 
 
-trzecia_f()
-opakowanie_inne()
+# trzecia_f()
+# opakowanie_inne()
 # opakuj_mnie()
 
 # dekoruj = dekoruj_cos(opakuj_mnie)
@@ -88,9 +88,9 @@ def dekorowana_bez_p():
     print(f'siema')
 
 
-dekorowana('Andrzej')
-dekorowana(x="Wojtek")
-dekorowana_bez_p()
+# dekorowana('Andrzej')
+# dekorowana(x="Wojtek")
+# dekorowana_bez_p()
 
 
 def star(func):
@@ -116,22 +116,24 @@ def percent(func):
 def printer(msg):
     print(msg)
 
-printer("Hello")
+# printer("Hello")
 
 
 
 # Dodaj dekorator który zliczy czas wykonywania tej funkcji z parametrami. Zaloguj na konsole wszystkie przekazane parametry
 def licz_czas_i_loguj(fun):
-    def wewnetrzna():
+    def wewnetrzna(*args, **kwargs):
+        print(f'Argumenty {args}')
+        print(f'Kew-word arguments {kwargs}')
         poczatek = datetime.now()
-        fun()
+        fun(*args, **kwargs)
         koniec = datetime.now()
         x = koniec - poczatek
         print(f' wywolanie trwalo {x}')
     return wewnetrzna
 
 
-
+@licz_czas_i_loguj
 def opakuj_mnie_z_parametrami(x, napis_do_wypisania):
     for i in range(x):
         time.sleep(1)
@@ -139,5 +141,88 @@ def opakuj_mnie_z_parametrami(x, napis_do_wypisania):
 
 
 
-opakuj_mnie_z_parametrami(3,"jestem cool")
-opakuj_mnie_z_parametrami(x=3, napis_do_wypisania="jestem cool")
+# opakuj_mnie_z_parametrami(1,"jestem cool")
+# opakuj_mnie_z_parametrami(x=1, napis_do_wypisania="jestem cool jeszcze bardziej")
+
+
+
+# dodatkowe materiały o dekoratorach [ENG] https://realpython.com/primer-on-python-decorators/#more-real-world-examples
+
+
+import functools
+
+
+@functools.lru_cache()
+def fibonacci(num):
+    print(f"Calculating fibonacci({num})")
+    if num < 2:
+        return num
+    return fibonacci(num - 1) + fibonacci(num - 2)
+
+# fibonacci(10)
+# fibonacci(10)
+
+
+def hello_decorator(func):
+    def inner1(*args, **kwargs):
+        print("before Execution")
+
+        # getting the returned value
+        returned_value = func(*args, **kwargs)
+        print("after Execution")
+
+        # returning the value to the original frame
+        return returned_value
+
+    return inner1
+
+
+# adding decorator to the function
+@hello_decorator
+def sum_two_numbers(a, b):
+    print("Inside the function")
+    return a + b
+
+
+# print(sum_two_numbers(2,2))
+
+
+
+class Osoba:
+    imie = 'Andrzej'
+    nazwisko = 'Klusiewicz'
+    wiek = 33
+    pustePole = None
+
+    def wypiszMnie(self):
+        print("Cześć jestem:")
+        print(self.imie, self.nazwisko, self.wiek)
+
+    def przywitaj_kolege(self, imie):
+        print(f"Cześć {imie} jestem: {self.imie}")
+
+
+o = Osoba()
+print(o.imie, o.nazwisko, o.wiek, o.pustePole)
+
+Osoba().wypiszMnie()
+
+o.imie='Krzysztof'
+o.nazwisko='Jarzyna'
+print(o.imie,o.nazwisko)
+
+o.wypiszMnie()
+o.przywitaj_kolege("Wojtek")
+
+# przywitaj_kolege("Kajetan")
+
+o2 = Osoba()
+lista_osob = [o, o2]
+
+for osoba in lista_osob:
+    osoba.wypiszMnie()
+
+
+#     Stwórz klasę "Samochod" posiadającą pola "marka", "model", "rejestracja".
+#     Klasa ta powinna zawierać też metodę "wyswietl" wypisującą dane z obiektu na konsoli
+#     Stwórz dwa obiekty tej klasy i korzystajac  z metody "wyświetl" wyswietl na konsoli ich zawartość.
