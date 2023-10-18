@@ -64,3 +64,4 @@ def fetch_data():
 # https://www.lucidchart.com/pages/pl/czym-jest-uml-unified-modeling-language
 
 # https://www.w3schools.com/python/python_regex.asp#sub
+# https://regex101.com/
