@@ -14,7 +14,11 @@
 #     hello()
 
 import os
+import click
 
+@click.command()
+@click.option("--katalog_startowy", default=".", help="Katalog startowy")
+@click.option("--fraza", prompt="Czego szukasz", help="Fragment nazwy ktorej szukasz")
 def znajdz_pliki_i_katalogi(katalog_startowy, fraza):
     """
     Ta funckja zajmuje sie znajdowaniem katalowgo i plikow. Ignoruje wielkosci liter
@@ -40,3 +44,9 @@ def znajdz_pliki_i_katalogi(katalog_startowy, fraza):
 
 
 # opkauj powyzsza funckje przy uzyciu bibloteki click
+
+
+if __name__ == '__main__':
+    znajdz_pliki_i_katalogi()
+
+# https://github.com/google/python-fire

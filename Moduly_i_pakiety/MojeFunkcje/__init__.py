@@ -6,7 +6,5 @@ SesjaDB = "connection string"
 
 from .funkcje import odejmowanie
 
-
-
-import logging.config
-logging.config.dictConfig({})
+# import logging.config
+# logging.config.dictConfig({})

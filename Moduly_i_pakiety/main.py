@@ -34,5 +34,8 @@ funkcje.hello_world()
 
 # stworzyli pakiet wypisywacz który będize zawiereał __init__.py - print z informacjami o pakiecie + import
 # stworzy plik z pisacz, w nim napisz hello world i zaimportuj i wywołaj
+from wypisywacz import pisanie
 
+if __name__ == "__main__":
+    pisanie()
 
