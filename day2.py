@@ -438,10 +438,17 @@ for f in figury:
 class Restauracja(ABC):
     @abstractmethod
     def serwuj_danie(self):
+
         pass
 
 class RestauracjaChinska(Restauracja):
     def serwuj_danie(self):
+        """
+
+        Returns
+        -------
+
+        """
         print("Restauracja chińska serwuje danie: Kaczka po pekińsku")
 
 class RestauracjaWloska(Restauracja):
@@ -554,7 +561,41 @@ for z in nasza_list:
     print(z)
 
 
+# Co to jest? Zaczyna się na D, kończy na A i zużywa dużo papieru? - Drukarka hehehe
+
 # Stwórz iterator który będzie zwracał nazwy kolejnych miesięcy. Iterator powinien też posiadać funkcję "restart"
 # która spowoduje rozpoczęcie podawania miesięcy od początku.
 
+class MiesiaceIterator:
+    def __init__(self):
+        self.miesiace = [
+            "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+            "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+        ]
+        self.indeks = 0
 
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.indeks < len(self.miesiace):
+            miesiac = self.miesiace[self.indeks]
+            self.indeks += 1
+            return miesiac
+        else:
+            raise StopIteration
+
+    def restart(self):
+        self.indeks = 0
+
+# Użycie iteratora
+miesiace_iterator = MiesiaceIterator()
+
+print("Miesiące:")
+for i in range(12):
+    print(next(miesiace_iterator))
+
+print("\nUruchomienie ponownie:")
+miesiace_iterator.restart()
+for i in miesiace_iterator:
+    print(i)

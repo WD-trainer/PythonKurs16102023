@@ -147,6 +147,17 @@ if __name__ == '__main__':
     # szukna_fraze = input("Podaj szukna_fraze ")
 
     def znajdz_pliki_i_katalogi(katalog_startowy, fraza):
+        """
+        Ta funckja zajmuje sie znajdowaniem katalowgo i plikow. Ignoruje wielkosci liter
+        Parameters
+        ----------
+        katalog_startowy
+        fraza
+
+        Returns
+        -------
+
+        """
         znalezione_elementy = []
 
         fraza = fraza.lower()
@@ -160,6 +171,8 @@ if __name__ == '__main__':
 
     # znajdz_pliki_i_katalogi(folder_startowy, szukna_fraze)
 
+    help(znajdz_pliki_i_katalogi)
+    print(znajdz_pliki_i_katalogi.__doc__)
 
     ############################### Krotki - tuple
     krotka = ("Imie", 23, 2.3)
